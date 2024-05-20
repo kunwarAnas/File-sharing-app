@@ -1,0 +1,36 @@
+import 'dotenv/config'
+import express from 'express';
+import path from 'path'
+import morgan from 'morgan';
+import uploadRouter from './routes/uploadRoute';
+import downloadRouter from './routes/downloadPageRoute'
+import sendRoute from './routes/sendEmailRoute'
+import { connectDB } from './DB' // ConnectDB 
+
+const PORT = process.env.PORT || 8080
+
+const app = express();
+
+app.use(morgan('tiny'))
+
+app.use(express.static('public'))
+
+// Rendering EJS
+app.set('views', path.join(__dirname + '/views'));
+app.set('view engine', 'ejs')
+
+// Routes
+app.use('/api', uploadRouter)
+app.use('/file', downloadRouter)
+app.use('/send',sendRoute)
+
+// Handling 404
+app.use((req, res) => {
+    res.status(404).send('Error No Route matches')
+})
+
+app.listen(PORT, () => {
+    console.log(`server is running ${PORT}`);
+})
+
+connectDB()
