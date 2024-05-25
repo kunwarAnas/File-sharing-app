@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage, limits: { fileSize: 100000 * 100 } }).single('file') // fileSize in bytes 
+const upload = multer({ storage, limits: { fileSize: 100000 * 1000 } }).single('file') // fileSize in bytes 
 
 export const uploadFile = (req: Request, res: Response, next: NextFunction) => {
     upload(req, res, (err: any) => {

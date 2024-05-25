@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express';
 import path from 'path'
 import morgan from 'morgan';
+import cors from 'cors'
 import uploadRouter from './routes/uploadRoute';
 import downloadRouter from './routes/downloadPageRoute'
 import sendRoute from './routes/sendEmailRoute'
@@ -13,6 +14,8 @@ const app = express();
 
 app.use(morgan('tiny'))
 
+app.use(cors())
+
 app.use(express.static('public'))
 
 // Rendering EJS
@@ -21,8 +24,8 @@ app.set('view engine', 'ejs')
 
 // Routes
 app.use('/api', uploadRouter)
-app.use('/file', downloadRouter)
-app.use('/send',sendRoute)
+app.use('/api/file', downloadRouter)
+app.use('/api/send', sendRoute)
 
 // Handling 404
 app.use((req, res) => {
