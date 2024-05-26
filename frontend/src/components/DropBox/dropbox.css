@@ -21,12 +21,7 @@
     50% { border-color: rgba(0, 0, 0, 0.962); }
 }
 
-.upload-container{
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 20px 20px 0px #00000017;
-}
+
   
 .drop-box{
     border: 2px dashed var(--border-color);
@@ -111,4 +106,36 @@
   font-size: 14px;
   margin: 5px;
   opacity: 0.7;
+}
+
+/* sharing container style */
+
+.sharing-container{
+  width: var(--container-width);
+  margin-bottom: 10px;
+}
+
+.sharing-container .input-container {
+  position: relative;
+}
+
+.sharing-container .input-container input{
+  width: 100%;
+  border: 2px dashed var(--border-color);
+  border-radius: 6px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-size: 20px;
+  background: #f5fcff;
+  color: #0000008c;
+}
+
+.img{
+  position: absolute;
+  height: 22px;
+  width: 30px;
+  right: 7px;
+  top: 12px;
+  background: #f7fdff;
+  cursor: pointer;
 }
