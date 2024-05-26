@@ -20,7 +20,7 @@ export const handleFileUpload = async (req: Request, res: Response) => {
 
         const response = await createFile.save()
 
-        return res.json(new ApiResponse({ file: `${process.env.BASE_URL}/files/${response.uuid}` }))
+        return res.json(new ApiResponse({ file: `${process.env.BASE_URL}/api/file/${response.uuid}` }))
 
     } catch (error) {
         error instanceof Error && res.status(500).json(new ApiError(error?.message as string))

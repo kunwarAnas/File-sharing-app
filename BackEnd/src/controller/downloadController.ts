@@ -23,7 +23,7 @@ export const renderDownloadPage = async (req: Request, res: Response) => {
             uuid: file.uuid,
             fileName: file.fileName,
             fileSize: file.size,
-            downloadLink: `${process?.env?.BASE_URL}/file/download/${file?.uuid}`
+            downloadLink: `${process?.env?.BASE_URL}/api/file/download/${file?.uuid}`
         })
     } catch (error) {
         error instanceof Error && res.status(500).json(new ApiError(error?.message as string))
