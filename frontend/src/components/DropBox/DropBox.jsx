@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import './dropbox.css'
 import axios from 'axios'
 import Layout from '../Layout/Layout'
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const DropBox = () => {
     const [file, setFile] = useState(null);
@@ -10,18 +10,17 @@ const DropBox = () => {
     const [uploadPercent, setUploadPercent] = useState(0)
     const [downloadLink, setDownloadLink] = useState('')
     const inputRef = useRef()
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleDragOver = (e) => {
         e.preventDefault();
         setisDragging(true)
-        //console.log(e);
     }
 
     const promise = result => {
         return new Promise((res, rej) => {
             setTimeout(() => {
-                res(result.data.data.file)
+                res(result?.data?.data?.file)
             }, 2000)
         })
     }
@@ -46,10 +45,10 @@ const DropBox = () => {
                 }
             })
 
-            const link = await new Promise((res, rej) => {
+            const link = await new Promise((res) => {
                 setTimeout(() => {
                     res(result?.data?.data?.file)
-                }, 1000)
+                }, 200)
             })
 
             setDownloadLink(link)
@@ -87,12 +86,33 @@ const DropBox = () => {
             }
 
             {
-                (downloadLink && +uploadPercent === 100) && <div class="sharing-container">
+                downloadLink && <div class="sharing-container">
                     <p class="expire">Link expires in 24 hrs</p>
-                    <div class="input-container">
+                    <div class="input-container" onClick={() => window.open(downloadLink, "_blank")}>
                         <input type="text" id="fileURL" readOnly={true} value={downloadLink} />
                         <img className='img' src="content_copy.svg" id="copyURLBtn" alt="copy to clipboard icon" onClick={() => navigator.clipboard.writeText(downloadLink)} />
                     </div>
+                </div>
+            }
+
+
+            {
+                downloadLink && <div className="share-cont">
+                    <p>Send Via Email</p>
+                    <div className="email-container">
+                    <form>
+                        <div className="field">
+                            <label htmlFor="reciever">Your Email</label>
+                            <input type="email" required={true} name='from-email' id='sender' />
+                        </div>
+
+                        <div className="field">
+                            <label htmlFor="reciever">Reciever Email</label>
+                            <input type="email" required={true} name='to-email' id='reciever' />
+                        </div>
+                        <button type='submit'>send</button>
+                    </form>
+                </div>
                 </div>
             }
         </Layout>
