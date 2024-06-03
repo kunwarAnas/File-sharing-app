@@ -1,16 +1,21 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './dropbox.css'
 import axios from 'axios'
-import Layout from '../Layout/Layout'
-// import { useNavigate } from "react-router-dom";
+import Layout from '../Layout'
+import EmailForm from '../EmailForm'
+import { useNavigate } from "react-router-dom";
+import PasswordForm from '../PasswordForm'
 
 const DropBox = () => {
     const [file, setFile] = useState(null);
     const [isDragging, setisDragging] = useState(false);
-    const [uploadPercent, setUploadPercent] = useState(0)
-    const [downloadLink, setDownloadLink] = useState('')
+    const [uploadPercent, setUploadPercent] = useState(0);
+    const [downloadLink, setDownloadLink] = useState('');
+    const [sendViaEmailForm, setsendViaEmailForm] = useState(false);
+    const [passwordFrom, setpasswordFrom] = useState(false);
+
     const inputRef = useRef()
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleDragOver = (e) => {
         e.preventDefault();
@@ -95,25 +100,29 @@ const DropBox = () => {
                 </div>
             }
 
+            {
+                downloadLink && <div className="options-btn">
+                    <button onClick={() => {
+                        if (sendViaEmailForm) {
+                            setsendViaEmailForm(false)
+                        }
+                        return setpasswordFrom(true)
+                    }}>Secure File</button>
+                    <button onClick={() => {
+                        if (passwordFrom) {
+                            setpasswordFrom(false)
+                        }
+                        return setsendViaEmailForm(true)
+                    }}>Send Via Email</button>
+                </div>
+            }
 
             {
-                downloadLink && <div className="share-cont">
-                    <p>Send Via Email</p>
-                    <div className="email-container">
-                    <form>
-                        <div className="field">
-                            <label htmlFor="reciever">Your Email</label>
-                            <input type="email" required={true} name='from-email' id='sender' />
-                        </div>
+                sendViaEmailForm && <EmailForm />
+            }
 
-                        <div className="field">
-                            <label htmlFor="reciever">Reciever Email</label>
-                            <input type="email" required={true} name='to-email' id='reciever' />
-                        </div>
-                        <button type='submit'>send</button>
-                    </form>
-                </div>
-                </div>
+            {
+                passwordFrom && <PasswordForm />
             }
         </Layout>
     )

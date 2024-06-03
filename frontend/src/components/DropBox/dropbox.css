@@ -178,7 +178,7 @@
   outline: none;
 }
 
-.email-container button{
+button{
   font-size: 18px;
   padding: 8px 40px;
   margin-top: 12px;
@@ -187,4 +187,11 @@
   border-radius: 5px;
   color: #607d8b;
   cursor: pointer;
+}
+
+
+.options-btn{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
 }
