@@ -1,0 +1,1 @@
+{"version":3,"file":"downloadPageRoute.js","sourceRoot":"","sources":["../../src/routes/downloadPageRoute.ts"],"names":[],"mappings":";;;;;AAAA,sDAA8B;AAC9B,yEAAoF;AAEpF,MAAM,cAAc,GAAG,iBAAO,CAAC,MAAM,EAAE,CAAC;AAExC,cAAc,CAAC,GAAG,CAAC,QAAQ,EAAE,uCAAkB,CAAC,CAAA;AAChD,cAAc,CAAC,GAAG,CAAC,iBAAiB,EAAE,iCAAY,CAAC,CAAA;AAEnD,kBAAe,cAAc,CAAA"}
