@@ -18,7 +18,7 @@ app.use(cors())
 
 app.use(express.static('public'))
 
-app.use(express.static(path.resolve('../client/build')))
+app.use(express.static(path.resolve('../../client/build')))
 
 // Rendering EJS
 app.set('views', path.join(__dirname + '/views'));

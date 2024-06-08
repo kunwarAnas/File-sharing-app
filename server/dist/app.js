@@ -17,7 +17,7 @@ const app = (0, express_1.default)();
 app.use((0, morgan_1.default)('tiny'));
 app.use((0, cors_1.default)());
 app.use(express_1.default.static('public'));
-app.use(express_1.default.static(path_1.default.resolve('../client/build')));
+app.use(express_1.default.static(path_1.default.resolve('../../client/build')));
 // Rendering EJS
 app.set('views', path_1.default.join(__dirname + '/views'));
 app.set('view engine', 'ejs');
@@ -35,5 +35,5 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`server is running ${PORT}`);
 });
-(0, DB_1.connectDB)();
+// (0, DB_1.connectDB)();
 //# sourceMappingURL=app.js.map
