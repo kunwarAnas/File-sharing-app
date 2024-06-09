@@ -32,8 +32,7 @@ const handleFileUpload = (req, res) => __awaiter(void 0, void 0, void 0, functio
             size
         });
         const response = yield createFile.save();
-        const directory = path_1.default.resolve("uploads");
-        console.log(directory);
+        const directory = path_1.default.resolve(__dirname, "..", "uploads");
         fs_1.default.readdir(directory, (err, files) => {
             if (err)
                 throw err;

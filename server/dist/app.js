@@ -6,17 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
-const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const uploadRoute_1 = __importDefault(require("./routes/uploadRoute"));
 const downloadPageRoute_1 = __importDefault(require("./routes/downloadPageRoute"));
 const sendEmailRoute_1 = __importDefault(require("./routes/sendEmailRoute"));
 const DB_1 = require("./DB"); // ConnectDB 
 const PORT = process.env.PORT || 8080;
-if (process.env.NODE_ENV !== 'dev') {
-}
 const app = (0, express_1.default)();
-app.use((0, morgan_1.default)('tiny'));
+// app.use(morgan('tiny'))
 app.use((0, cors_1.default)());
 app.use(express_1.default.static(path_1.default.resolve(__dirname, '..', 'public')));
 app.use(express_1.default.static(path_1.default.resolve(__dirname, '..', 'build')));

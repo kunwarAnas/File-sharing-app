@@ -23,8 +23,7 @@ export const handleFileUpload = async (req: Request, res: Response) => {
 
         const response = await createFile.save()
 
-        const directory = path.resolve("uploads")
-        console.log(directory);
+        const directory = path.resolve(__dirname, "..", "uploads")
 
         fs.readdir(directory, (err, files) => {
             if (err) throw err;

@@ -9,9 +9,9 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
-        const folderPath = path_1.default.resolve(__dirname, '..', '..', 'uploads');
+        const folderPath = path_1.default.resolve(__dirname, '..', 'uploads');
         fs_1.default.mkdirSync(folderPath, { recursive: true });
-        cb(null, 'uploads/');
+        cb(null, folderPath + '/');
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -22,7 +22,7 @@ const upload = (0, multer_1.default)({ storage, limits: { fileSize: 100000 * 100
 const uploadFile = (req, res, next) => {
     upload(req, res, (err) => {
         if (err) {
-            console.log(err);
+            console.log('multer error->', err);
             return res.status(500).send('Upload file failed');
         }
         next();

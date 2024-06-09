@@ -10,13 +10,9 @@ import { connectDB } from './DB' // ConnectDB
 
 const PORT = process.env.PORT || 8080
 
-if(process.env.NODE_ENV !== 'dev'){
-
-}
-
 const app = express();
 
-app.use(morgan('tiny'))
+// app.use(morgan('tiny'))
 
 app.use(cors())
 
