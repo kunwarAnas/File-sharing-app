@@ -18,15 +18,17 @@ app.use(cors())
 
 app.use(express.static('public'))
 
-app.use(express.static(path.resolve('../../client/build')))
+app.use(express.static(path.resolve(__dirname, '..', 'build')))
 
 // Rendering EJS
 app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'ejs')
 
 // Routes
-app.use('/', (_, res) => {
-    res.sendFile(path?.resolve('../../client/build'))
+console.log(path?.join(process.cwd() + '/build'));
+
+app.use('*', (_, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'))
 })
 
 app.use('/api', uploadRouter)

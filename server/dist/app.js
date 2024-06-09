@@ -17,13 +17,14 @@ const app = (0, express_1.default)();
 app.use((0, morgan_1.default)('tiny'));
 app.use((0, cors_1.default)());
 app.use(express_1.default.static('public'));
-app.use(express_1.default.static(path_1.default.resolve('../../client/build')));
+app.use(express_1.default.static(path_1.default.resolve(__dirname, '..', 'build')));
 // Rendering EJS
 app.set('views', path_1.default.join(__dirname + '/views'));
 app.set('view engine', 'ejs');
 // Routes
-app.use('/', (_, res) => {
-    res.sendFile(path_1.default === null || path_1.default === void 0 ? void 0 : path_1.default.resolve('../../client/build'));
+console.log(path_1.default === null || path_1.default === void 0 ? void 0 : path_1.default.join(process.cwd() + '/build'));
+app.use('*', (_, res) => {
+    res.sendFile(path_1.default.resolve(__dirname, '..', 'build', 'index.html'));
 });
 app.use('/api', uploadRoute_1.default);
 app.use('/api/file', downloadPageRoute_1.default);
