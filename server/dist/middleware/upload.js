@@ -6,8 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadFile = void 0;
 const multer_1 = __importDefault(require("multer"));
 const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
 const storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
+        const folderPath = path_1.default.resolve(__dirname, '..', '..', 'uploads');
+        fs_1.default.mkdirSync(folderPath, { recursive: true });
         cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {

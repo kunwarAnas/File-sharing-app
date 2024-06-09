@@ -39,7 +39,7 @@ const DropBox = () => {
         let formData = new FormData();
         formData.append("file", file);
         try {
-            const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/upload`, formData, {
+            const result = await axios.post(`api/upload`, formData, {
                 onUploadProgress: (progressEvent) => {
                     const { loaded, total } = progressEvent;
                     let precentage = Math.floor((loaded * 100) / total);

@@ -10,13 +10,17 @@ import { connectDB } from './DB' // ConnectDB
 
 const PORT = process.env.PORT || 8080
 
+if(process.env.NODE_ENV !== 'dev'){
+
+}
+
 const app = express();
 
 app.use(morgan('tiny'))
 
 app.use(cors())
 
-app.use(express.static('public'))
+app.use(express.static(path.resolve(__dirname, '..', 'public')))
 
 app.use(express.static(path.resolve(__dirname, '..', 'build')))
 
@@ -25,15 +29,14 @@ app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'ejs')
 
 // Routes
-console.log(path?.join(process.cwd() + '/build'));
-
-app.use('*', (_, res) => {
-    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'))
-})
 
 app.use('/api', uploadRouter)
 app.use('/api/file', downloadRouter)
 app.use('/api/send', sendRoute)
+
+app.use('/', (_, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'))
+})
 
 // Handling 404
 app.use((req, res) => {
