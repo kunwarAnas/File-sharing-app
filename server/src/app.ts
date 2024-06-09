@@ -26,7 +26,7 @@ app.set('view engine', 'ejs')
 
 // Routes
 app.use('/', (_, res) => {
-    res.sendFile(path?.resolve('../client/build'))
+    res.sendFile(path?.resolve('../../client/build'))
 })
 
 app.use('/api', uploadRouter)

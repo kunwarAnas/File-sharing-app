@@ -23,7 +23,7 @@ app.set('views', path_1.default.join(__dirname + '/views'));
 app.set('view engine', 'ejs');
 // Routes
 app.use('/', (_, res) => {
-    res.sendFile(path_1.default === null || path_1.default === void 0 ? void 0 : path_1.default.resolve('../client/build'));
+    res.sendFile(path_1.default === null || path_1.default === void 0 ? void 0 : path_1.default.resolve('../../client/build'));
 });
 app.use('/api', uploadRoute_1.default);
 app.use('/api/file', downloadPageRoute_1.default);
@@ -35,5 +35,5 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`server is running ${PORT}`);
 });
-// (0, DB_1.connectDB)();
+(0, DB_1.connectDB)();
 //# sourceMappingURL=app.js.map
