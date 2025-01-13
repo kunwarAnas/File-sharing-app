@@ -3,7 +3,7 @@ import './dropbox.css'
 import axios from 'axios'
 import Layout from '../Layout'
 import EmailForm from '../EmailForm'
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import PasswordForm from '../PasswordForm'
 
 const DropBox = () => {
@@ -71,7 +71,7 @@ const DropBox = () => {
         <Layout>
             <div onDragOver={handleDragOver} onDragLeave={() => setisDragging(false)} onDrop={handleDrop} className={isDragging ? "dragged drop-box" : 'drop-box'}>
                 <div className="icon-container">
-                    <img className='center' src="files.png"/>
+                    <img className='center' src="files.png" alt=""/>
                 </div>
                 <input type="file" className="input" ref={inputRef} />
                 <div className="text-title">Drop your Files here or, <span id="browseBtn" onClick={handleClick}>browse</span></div>
