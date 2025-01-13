@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import './dropbox.css'
 import axios from 'axios'
 import Layout from '../Layout'
@@ -15,20 +15,20 @@ const DropBox = () => {
     const [passwordFrom, setpasswordFrom] = useState(false);
 
     const inputRef = useRef()
-    const navigate = useNavigate();
-
     const handleDragOver = (e) => {
         e.preventDefault();
         setisDragging(true)
     }
 
-    const promise = result => {
-        return new Promise((res, rej) => {
-            setTimeout(() => {
-                res(result?.data?.data?.file)
-            }, 2000)
-        })
-    }
+    // const promise = result => {
+    //     return new Promise((res, rej) => {
+    //         setTimeout(() => {
+    //             res(result?.data?.data?.file)
+    //         }, 2000)
+    //     })
+    // }
+
+    // console.log(promise)
 
     const handleDrop = async (e) => {
         e.preventDefault();
@@ -71,7 +71,7 @@ const DropBox = () => {
         <Layout>
             <div onDragOver={handleDragOver} onDragLeave={() => setisDragging(false)} onDrop={handleDrop} className={isDragging ? "dragged drop-box" : 'drop-box'}>
                 <div className="icon-container">
-                    <img className='center' src="files.png" alt="image" />
+                    <img className='center' src="files.png"/>
                 </div>
                 <input type="file" className="input" ref={inputRef} />
                 <div className="text-title">Drop your Files here or, <span id="browseBtn" onClick={handleClick}>browse</span></div>

@@ -5,7 +5,6 @@ import {
   Route,
 } from "react-router-dom";
 import DropBox from "./components/DropBox/DropBox";
-import EmailForm from "./components/EmailForm";
 
 function App() {
   return (
